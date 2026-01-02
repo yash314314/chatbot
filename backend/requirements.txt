@@ -10,3 +10,4 @@ passlib
 python-jose
 python-multipart
 email-validator
+huggingface_hub
