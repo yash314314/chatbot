@@ -4,3 +4,8 @@ sqlalchemy
 pymysql
 python-dotenv
 requests
+google-genai
+pillow
+passlib
+python-jose
+python-multipart
