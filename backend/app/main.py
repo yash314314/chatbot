@@ -23,7 +23,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Real-Time Doubt Solving Chatbot")
 
 
-origins = ["http://localhost:3000", "http://127.0.0.1:3000"]
+origins = ["http://localhost:3000", "https://chatbot-ochre-tau-10.vercel.app"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
