@@ -9,3 +9,4 @@ pillow
 passlib
 python-jose
 python-multipart
+email-validator
