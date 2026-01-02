@@ -12,4 +12,4 @@ python-multipart
 email-validator
 huggingface_hub
 cryptography
-brcypt
+bcrypt==4.0.1
