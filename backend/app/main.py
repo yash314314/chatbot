@@ -70,7 +70,13 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     user.role = role 
     return user
 
-
+@app.get("/")
+def read_root():
+    return {
+        "status": "online", 
+        "message": "Real-Time Doubt Solving Bot API is running!", 
+        "docs": "/docs"
+    }
 
 @app.post("/register/{role}", response_model=schemas.UserResponse)
 def register_user(role: str, user_data: schemas.UserCreate, db: Session = Depends(get_db)):
