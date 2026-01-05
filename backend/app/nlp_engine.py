@@ -89,3 +89,5 @@ def ask_huggingface_text(question, history):
         return response.choices[0].message.content
 
     except Exception as e:
+        print(f"HF Error: {e}")
+        return "⚠️ AI Service Busy. Please escalate to a human tutor."
