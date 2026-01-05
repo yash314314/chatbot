@@ -48,7 +48,7 @@ def ask_gemini_vision(question, image_base64):
         # Send to Gemini
         # USING THE SPECIFIC EXPERIMENTAL MODEL FROM YOUR LIST
         response = client.models.generate_content(
-            model='gemini-exp-1206', 
+            model='gemini-flash-latest', 
             contents=[image, "\n\n", f"Analyze this image and answer: {question}"]
         )
         return response.text
