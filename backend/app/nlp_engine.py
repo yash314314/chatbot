@@ -11,23 +11,23 @@ def generate_answer(question: str, image_base64: str = None, previous_history: l
 
     client = InferenceClient(api_key=api_key)
 
+
     if image_base64:
         try:
-            print("📷 Image detected, switching to Vision Model...")
-       
+            print("📷 Image detected, switching to Vision Model (Qwen2-VL)...")
+            
             if "," in image_base64:
-                image_url = image_base64  
+                image_url = image_base64 
             else:
                 image_url = f"data:image/jpeg;base64,{image_base64}"
 
-       
             messages = [
                 {
                     "role": "user",
                     "content": [
                         {
                             "type": "text", 
-                            "text": f"You are a helpful tutor. Analyze this image and answer the question: {question}"
+                            "text": f"Analyze this image and answer the question: {question}"
                         },
                         {
                             "type": "image_url",
@@ -37,9 +37,8 @@ def generate_answer(question: str, image_base64: str = None, previous_history: l
                 }
             ]
 
-      
             response = client.chat_completion(
-                model="meta-llama/Llama-3.2-11B-Vision-Instruct",
+                model="Qwen/Qwen2-VL-7B-Instruct", 
                 messages=messages,
                 max_tokens=1000,
                 stream=False
@@ -48,11 +47,10 @@ def generate_answer(question: str, image_base64: str = None, previous_history: l
 
         except Exception as e:
             print(f"Vision Error: {e}")
-            return "⚠️ Image Analysis Failed: The free vision model is currently overloaded. Please try again or ask in text."
+            return "⚠️ Image Analysis Unavailable: The free vision models are currently overloaded or restricted. Please ask your question in text format!"
 
 
     try:
-
         messages = []
         messages.append({
             "role": "system", 
@@ -79,6 +77,7 @@ def generate_answer(question: str, image_base64: str = None, previous_history: l
 
 def fallback_qwen(client, messages):
     try:
+        # Text Backup
         response = client.chat_completion(
             model="Qwen/Qwen2.5-7B-Instruct",
             messages=messages,
