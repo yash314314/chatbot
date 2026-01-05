@@ -47,7 +47,7 @@ def ask_gemini_vision(question, image_base64):
 
      
         response = client.models.generate_content(
-            model='gemini-2.0-flash-lite-preview-02-05', 
+            model='gemini-1.5-flash', 
             contents=[image, "\n\n", f"Analyze this image and answer: {question}"]
         )
         return response.text
